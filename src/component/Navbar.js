@@ -13,13 +13,13 @@ const Navbar = () => {
         <div className="container">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="">
-                    <NavLink className='p-2' to='/'>Home</NavLink>
+                    <NavLink className='p-2' to='/home'>Add Task</NavLink>
                     <NavLink to='/task'>Task</NavLink>
                     {
                         user ?
                             <button className='btn btn-link text-decoration-none' onClick={handleSignOut}>Sign Out</button>
                             :
-                            <NavLink className='p-2' to="/login">
+                            <NavLink className='p-2' to="/">
                                 Login
                             </NavLink>
                     }

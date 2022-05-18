@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Task = () => {
     const [tasks, setTasks] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/task')
+        fetch(' https://thawing-dawn-86875.herokuapp.com/task')
             .then(res => res.json())
             .then(data => setTasks(data))
     }, []);
@@ -14,14 +15,14 @@ const Task = () => {
         const proceed = window.confirm('Are you sure for delete?')
         if (proceed) {
             console.log('Identify id', id);
-            const url = `http://localhost:5000/task/${id}`;
+            const url = ` https://thawing-dawn-86875.herokuapp.com/task/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
                 .then(data => {
                     if (data.deletedCount > 0) {
-                        console.log('Deleted');
+                        toast.success('Successfully Deleted')
                         const remaining = tasks.filter(task => task._id !== id);
                         setTasks(remaining);
                     }
@@ -39,8 +40,9 @@ const Task = () => {
                         <h5 className="card-title">Task name: {task.name}</h5>
                         <p className="card-text">Task Description: {task.task}</p>
                     </div>
-                    <button onClick={() => handleTaskDelete(task._id)}>❌</button>
-                </div>)
+                    <button onClick={() => handleTaskDelete(task._id)} type="submit" class="btn btn-outline-danger">Delete</button>
+                </div>
+                )
             }
         </div>
     );

@@ -13,7 +13,7 @@ const Home = () => {
 
         const tasks = { name, task };
 
-        fetch('http://localhost:5000/task', {
+        fetch(' https://thawing-dawn-86875.herokuapp.com/task', {
             method: 'POST',
             headers: {
                 'content-Type': 'application/json',
@@ -24,23 +24,24 @@ const Home = () => {
             .then(data => {
                 console.log('Success:', data);
                 event.target.reset()
-                toast('Task Is Added')
+                toast.success('Task Is Added')
                 navigate('/task')
             })
     }
     return (
         <div className='container'>
             <h2 className='text-center'>Add Task</h2>
-            <div className=' d-flex justify-content-center align-items-center'>
-
-                <form onSubmit={handleSubmit}>
-                    <input type="text" name='name' placeholder='Enter Task name' required />
-                    <br />
-                    <textarea type="text" name='task' placeholder='Enter task Description' required />
-                    <br />
-                    <input type="submit" value="Add Task" />
-                </form>
-            </div>
+            <form onSubmit={handleSubmit} className=' '>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Task Name</label>
+                    <input type="text" name='name' class="form-control" id="exampleFormControlInput1" placeholder="Task name" />
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Task Description</label>
+                    <textarea name='task' class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-outline-success">Add Task</button>
+            </form>
         </div>
     );
 };

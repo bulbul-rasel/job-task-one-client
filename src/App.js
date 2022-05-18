@@ -14,12 +14,12 @@ function App() {
     <div>
       <Navbar></Navbar>
       <Routes>
-        <Route path='/' element={<Home></Home>}></Route>
-        <Route path='/home' element={<Home></Home>}></Route>
+        {/* <Route path='/' element={<Home></Home>}></Route> */}
+        <Route path='/home' element={<RequireAuth><Home /></RequireAuth>}></Route>
         <Route path='/task' element={<RequireAuth>
           <Task />
         </RequireAuth>}></Route>
-        <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/' element={<Login></Login>}></Route>
       </Routes>
       <ToastContainer></ToastContainer>
     </div>
